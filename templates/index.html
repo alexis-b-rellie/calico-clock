@@ -2,9 +2,19 @@
 <html>
 <head>
     <title>Calico Clock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to Calico Clock!</h1>
-    <p><a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('signup') }}">Sign Up</a></p>
+    <div class="container">
+        <h1>🐾 Calico Clock</h1>
+        <p>Welcome! Organise your study time with a Pomodoro timer.</p>
+        <p>
+            <a href="{{ url_for('login') }}">Login</a> | 
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+        </p>
+    </div>
+    <footer>
+        &copy; 2025 Calico Clock &mdash; Study hard! 
+    </footer>
 </body>
 </html>

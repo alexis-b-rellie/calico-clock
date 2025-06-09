@@ -1,9 +1,65 @@
-<!-- login.html -->
+<!-- dashboard.html -->
 <!DOCTYPE html>
 <html>
-<head><title>Welcome to your dashboard!</title></head>
-<body>
-    <h2>Create timers</h2>
+<head>
+    <title>Dashboard | Calico Clock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        // Simple Pomodoro Timer JS
+        let timer;
+        let timeLeft = 25 * 60; // 25 minutes
+        let running = false;
 
+        function updateDisplay() {
+            const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+            const secs = String(timeLeft % 60).padStart(2, '0');
+            document.getElementById('timer').textContent = `${mins}:${secs}`;
+        }
+
+        function startTimer() {
+            if (running) return;
+            running = true;
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateDisplay();
+                } else {
+                    clearInterval(timer);
+                    running = false;
+                    alert("Time's up! Take a break 🐾");
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timer);
+            running = false;
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = 25 * 60;
+            updateDisplay();
+        }
+
+        window.onload = updateDisplay;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Pomodoro Timer</h2>
+        <div class="pomodoro-timer">
+            <div id="timer">25:00</div>
+            <div class="pomodoro-controls">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="pauseTimer()">Pause</button>
+                <button onclick="resetTimer()">Reset</button>
+            </div>
+        </div>
+        <p>Stay focused for 25 minutes, then take a short break!</p>
+    </div>
+    <footer>
+        &copy; 2025 Calico Clock
+    </footer>
 </body>
 </html>

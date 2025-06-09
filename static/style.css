@@ -1,0 +1,97 @@
+body {
+    background: #ffe5ec;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+    color: #6d6875;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: #fff0f6;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 2em 2.5em;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(255, 182, 193, 0.2);
+    text-align: center;
+}
+
+h1, h2 {
+    color: #ff6f91;
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: #ff6f91;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.form-group {
+    margin-bottom: 1.5em;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-size: 1.1em;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.7em;
+    border: 1px solid #ffb3c6;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+.btn, button {
+    background: #ffb3c6;
+    color: #fff;
+    border: none;
+    padding: 0.7em 2em;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 1em;
+    transition: background 0.2s;
+}
+
+.btn:hover, button:hover {
+    background: #ff6f91;
+}
+
+.pomodoro-timer {
+    margin: 2em 0;
+    padding: 1.5em;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(255, 182, 193, 0.15);
+    display: inline-block;
+}
+
+#timer {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ff6f91;
+    margin-bottom: 1em;
+    letter-spacing: 2px;
+}
+
+.pomodoro-controls button {
+    margin: 0 0.5em;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2em;
+    color: #b5838d;
+    font-size: 0.9em;
+}
