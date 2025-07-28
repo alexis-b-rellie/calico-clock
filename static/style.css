@@ -1,34 +1,54 @@
 body {
-    background: #ffe5ec;
-    font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
-    color: #6d6875;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+    color: #6d6875;
+    /* Animated pastel gradient background */
+    background: linear-gradient(-45deg, #ffe5ec, #c3f0ca, #f7f6c5, #b5ead7, #f3c6e8, #c1c8e4);
+    background-size: 400% 400%;
+    animation: gradientBG 18s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    25% {background-position: 50% 100%;}
+    50% {background-position: 100% 50%;}
+    75% {background-position: 50% 0%;}
+    100% {background-position: 0% 50%;}
 }
 
 .container {
-    background: #fff0f6;
-    max-width: 400px;
+    background: rgba(255, 255, 255, 0.85);
+    max-width: 420px;
     margin: 40px auto;
     padding: 2em 2.5em;
-    border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(255, 182, 193, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(180, 180, 180, 0.15);
     text-align: center;
 }
 
 h1, h2 {
-    color: #ff6f91;
+    color: #ffb4a2;
     margin-bottom: 0.5em;
+    font-family: 'Baloo 2', 'Comic Sans MS', cursive, sans-serif;
+}
+
+h3 {
+    color: #9ad4d6;
+    margin-top: 1.5em;
+    font-family: 'Baloo 2', 'Comic Sans MS', cursive, sans-serif;
 }
 
 a {
-    color: #ff6f91;
+    color: #9ad4d6;
     text-decoration: none;
     font-weight: bold;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #ffb4a2;
 }
 
 .form-group {
@@ -40,20 +60,22 @@ label {
     display: block;
     margin-bottom: 0.3em;
     font-size: 1.1em;
+    color: #6d6875;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="number"] {
     width: 100%;
     padding: 0.7em;
-    border: 1px solid #ffb3c6;
+    border: 1px solid #b5ead7;
     border-radius: 8px;
-    background: #fff;
+    background: #f7f6c5;
     font-size: 1em;
     margin-bottom: 0.5em;
+    color: #6d6875;
 }
 
 .btn, button {
-    background: #ffb3c6;
+    background: linear-gradient(90deg, #ffb4a2 0%, #9ad4d6 100%);
     color: #fff;
     border: none;
     padding: 0.7em 2em;
@@ -61,11 +83,13 @@ input[type="text"], input[type="password"] {
     font-size: 1.1em;
     cursor: pointer;
     margin-top: 1em;
-    transition: background 0.2s;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(180, 180, 180, 0.10);
 }
 
 .btn:hover, button:hover {
-    background: #ff6f91;
+    background: linear-gradient(90deg, #9ad4d6 0%, #ffb4a2 100%);
+    box-shadow: 0 4px 16px rgba(180, 180, 180, 0.15);
 }
 
 .pomodoro-timer {
@@ -73,20 +97,22 @@ input[type="text"], input[type="password"] {
     padding: 1.5em;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(255, 182, 193, 0.15);
+    box-shadow: 0 2px 8px rgba(180, 180, 180, 0.10);
     display: inline-block;
 }
 
 #timer {
     font-size: 2.5em;
     font-weight: bold;
-    color: #ff6f91;
+    color: #ffb4a2;
     margin-bottom: 1em;
     letter-spacing: 2px;
 }
 
 .pomodoro-controls button {
-    margin: 0 0.5em;
+    margin: 0 0.25em;
+    padding: 0.7em 1em;
+    min-width: 70px;
 }
 
 footer {
@@ -94,4 +120,28 @@ footer {
     margin-top: 2em;
     color: #b5838d;
     font-size: 0.9em;
+}
+
+.preset-timers {
+    margin-bottom: 1em;
+}
+.preset-timers button {
+    background: linear-gradient(90deg, #f7f6c5 0%, #c3f0ca 100%);
+    color: #6d6875;
+    border: none;
+    padding: 0.5em 1.2em;
+    border-radius: 8px;
+    font-size: 1em;
+    margin: 0 0.3em 0.7em 0.3em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.preset-timers button:hover {
+    background: linear-gradient(90deg, #c1c8e4 0%, #f3c6e8 100%);
+    color: #fff;
+}
+
+.uploaded-image img {
+    box-shadow: 0 2px 12px rgba(255, 182, 193, 0.15);
+    border: 2px solid #ffb3c6;
 }

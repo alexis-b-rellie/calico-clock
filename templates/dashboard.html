@@ -4,10 +4,56 @@
 <head>
     <title>Dashboard | Calico Clock</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <span id="live-clock" style="font-size:1.2em; font-weight:bold; color:#ff6f91;"></span>
+            </div>
+            <div>
+                <a href="{{ url_for('logout') }}" class="btn" style="padding:0.5em 1em;">Logout</a>
+            </div>
+        </div>
+        <h2>Calico Clock</h2>
+        <div class="preset-timers">
+            <button onclick="setTimer(25*60)">Pomodoro (25 min)</button>
+            <button onclick="setTimer(15*60)">Short Study (15 min)</button>
+            <button onclick="setTimer(60*60)">Long Study (1 hour)</button>
+            <button onclick="setTimer(5*60)">Break (5 min)</button>
+            {% for t in timers %}
+                <button onclick="setTimer({{ t.duration }})">{{ t.name }}</button>
+            {% endfor %}
+        </div>
+        <div class="pomodoro-timer">
+            <div id="timer">25:00</div>
+            <div class="pomodoro-controls">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="pauseTimer()">Pause</button>
+                <button onclick="resetTimer()">Reset</button>
+            </div>
+        </div>
+        <hr>
+        <h3>Create a Custom Timer</h3>
+        <form action="{{ url_for('dashboard') }}" method="post">
+            <div class="form-group">
+                <label for="timer_name">Timer Name:</label>
+                <input type="text" id="timer_name" name="timer_name" placeholder="Timer Name" required>
+            </div>
+            <div class="form-group">
+                <label for="timer_duration">Duration (minutes):</label>
+                <input type="number" id="timer_duration" name="timer_duration" min="1" max="180" placeholder="Minutes (e.g. 25)" required>
+                <small style="color:#b5838d;">Enter duration in minutes (max 180).</small>
+            </div>
+            <button type="submit" class="btn">Add Timer</button>
+        </form>
+    </div>
+    <footer>
+    </footer>
     <script>
-        // Simple Pomodoro Timer JS
         let timer;
-        let timeLeft = 25 * 60; // 25 minutes
+        let defaultTime = {{ selected_duration|default(1500)|int|tojson }};
+        let timeLeft = defaultTime;
         let running = false;
 
         function updateDisplay() {
@@ -38,28 +84,33 @@
 
         function resetTimer() {
             pauseTimer();
-            timeLeft = 25 * 60;
+            timeLeft = defaultTime;
             updateDisplay();
         }
 
-        window.onload = updateDisplay;
+        function setTimer(seconds) {
+            pauseTimer();
+            defaultTime = seconds;
+            timeLeft = seconds;
+            updateDisplay();
+        }
+
+        // Live Clock JS (12-hour format)
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            document.getElementById('live-clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+        }
+        setInterval(updateClock, 1000);
+        window.onload = function() {
+            updateDisplay();
+            updateClock();
+        };
     </script>
-</head>
-<body>
-    <div class="container">
-        <h2>Pomodoro Timer</h2>
-        <div class="pomodoro-timer">
-            <div id="timer">25:00</div>
-            <div class="pomodoro-controls">
-                <button onclick="startTimer()">Start</button>
-                <button onclick="pauseTimer()">Pause</button>
-                <button onclick="resetTimer()">Reset</button>
-            </div>
-        </div>
-        <p>Stay focused for 25 minutes, then take a short break!</p>
-    </div>
-    <footer>
-        
-    </footer>
 </body>
 </html>
