@@ -15,8 +15,11 @@
                 <a href="{{ url_for('logout') }}" class="btn" style="padding:0.5em 1em;">Logout</a>
             </div>
         </div>
-        <h2>Calico Clock</h2>
-        <div class="preset-timers">
+        <h2 style="margin-bottom:0.5em;">Calico Clock</h2>
+        <div style="font-size:1.1em; color:#b86973; margin-bottom:1em;">
+            Hello {{ username }}!
+        </div>
+        <div class="preset-timers">  
             <button onclick="setTimer(25*60)">Pomodoro (25 min)</button>
             <button onclick="setTimer(15*60)">Short Study (15 min)</button>
             <button onclick="setTimer(60*60)">Long Study (1 hour)</button>
@@ -61,7 +64,7 @@
             const secs = String(timeLeft % 60).padStart(2, '0');
             document.getElementById('timer').textContent = `${mins}:${secs}`;
         }
-
+// start timer function
         function startTimer() {
             if (running) return;
             running = true;
@@ -76,18 +79,18 @@
                 }
             }, 1000);
         }
-
+// pause timer function
         function pauseTimer() {
             clearInterval(timer);
             running = false;
         }
-
+// reset time function
         function resetTimer() {
             pauseTimer();
             timeLeft = defaultTime;
             updateDisplay();
         }
-
+// set timer function
         function setTimer(seconds) {
             pauseTimer();
             defaultTime = seconds;
@@ -95,7 +98,7 @@
             updateDisplay();
         }
 
-        // Live Clock JS (12-hour format)
+        // creating a 12 hour clock
         function updateClock() {
             const now = new Date();
             let hours = now.getHours();
